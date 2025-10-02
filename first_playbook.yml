@@ -1,0 +1,14 @@
+---
+
+- name: Our first playbook
+  hosts: macos
+  gather_facts: false
+  vars:
+    ansible_become_password: "{{ password  }}"
+    ansible_become: true
+    ansible_become_user: jorgruhe
+  tasks:
+    
+    - name: jorgruhe Pswd
+      ansible.builtin.debug:
+        msg: "Es hat geklappt, das passsword lautet {{ ansible_become_password }} der benutzer ist {{ ansible_user }}"
