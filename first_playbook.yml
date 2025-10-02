@@ -3,10 +3,12 @@
 - name: Our first playbook
   hosts: macos
   gather_facts: false
+  vars_files: ./vars/macos.yml
   vars:
     ansible_become_password: "{{ password  }}"
     ansible_become: true
     ansible_become_user: jorgruhe
+ 
   tasks:
     
     - name: jorgruhe Pswd
