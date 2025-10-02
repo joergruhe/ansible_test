@@ -11,4 +11,4 @@
     
     - name: jorgruhe Pswd
       ansible.builtin.debug:
-        msg: "Es hat geklappt, das passsword lautet {{ ansible_become_password }} der benutzer ist {{ ansible_user }}"
+        msg: "Es hat geklappt, das passsword lautet {{ ansible_become_password }} der benutzer ist {{ ansible_become_user }}"
