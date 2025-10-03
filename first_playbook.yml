@@ -13,17 +13,3 @@
     - name: jorgruhe Pswd
       ansible.builtin.debug:
         msg: "Es hat geklappt, das passsword lautet {{ ansible_become_password }} der benutzer ist {{ ansible_become_user }}"
-
-    - name: Create a symbolic link
-      ansible.builtin.file:
-       src: /Users/Shared/testfile.txt
-       dest: /Users/jorgruhe/testfile_link.txt
-       state: link
-       owner: jorgruhe
-       mode: '0755'
-      notify: erfolgsnachricht
-
-  handlers:
-    - name: erfolgsnachricht
-      ansible.builtin.debug:
-        msg: "mit dem notify für den link hat es geklappt"
