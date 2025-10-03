@@ -1,0 +1,18 @@
+- name: Test Playbook fuer notify
+  hosts: macos
+  gather_facts: false
+  tasks:
+
+    - name: Create a symbolic link
+      ansible.builtin.file:
+        src: /Users/ruhej/ansible_entwicklung/ansible_praxisbuch/ansible_repo/ansible_test/testhandler.txt
+        dest: /Users/ruhej/ansible_entwicklung/ansible_praxisbuch/ansible_repo/ansible_test/variable_link.txt
+        state: link
+        owner: ruhej
+        mode: '0755'
+      notify: Erfolgsnachricht
+
+  handlers:
+    - name: Erfolgsnachricht
+      ansible.builtin.debug:
+        msg: "mit dem notify für den link hat es geklappt"
