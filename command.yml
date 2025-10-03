@@ -1,0 +1,17 @@
+- name: Simpler Test Playbook
+  hosts: macos
+  gather_facts: true
+
+  tasks:
+    - name: Determine space requirements
+      ansible.builtin.command: df -h /
+      register: disk_space
+      changed_when: false
+
+    - name: Show disk space
+      ansible.builtin.debug:
+        var: disk_space.stdout_lines
+
+    - name: Liest ansible_facts aus
+      ansible.builtin.debug:
+        var: groups

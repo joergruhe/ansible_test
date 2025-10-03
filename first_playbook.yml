@@ -7,9 +7,28 @@
   vars:
     ansible_become_password: "{{ password  }}"
     ansible_become: true
-    ansible_become_user: jorgruhe
+    ansible_become_user: "jorgruhe"
+    ansible_user: "{{ ansible_become_user }}"
+    ansible_password: "{{ ansible_become_password }}"
 
   tasks:
+    - ansible.builtin.assert:
+        that:
+          ansible_user  == ansible_become_user
+        fail_msg: "Der user ist nicht {{ ansible_become_user }}!"
+        success_msg: "Der user ist {{ ansible_become_user }}!"
     - name: jorgruhe Pswd
       ansible.builtin.debug:
         msg: "Es hat geklappt, das passsword lautet {{ ansible_become_password }} der benutzer ist {{ ansible_become_user }}"
+    - name: Test ob ich root bin
+      ansible.builtin.command: whoami
+      register: user
+    - name: Ausgabe des users
+      ansible.builtin.debug:
+        msg: "Der user ist {{ user.stdout }}"
+
+    - ansible.builtin.assert:
+        that:
+          - user.stdout == ansible_become_user
+        fail_msg: "Der user ist nicht {{ ansible_become_user }}!"
+        success_msg: "Der user ist {{ ansible_become_user }}!"

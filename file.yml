@@ -12,6 +12,17 @@
         mode: '0755'
       notify: Erfolgsnachricht
 
+    - name: Jorgruhe Pswd Test ob ich root bin
+      ansible.builtin.command: whoami
+      register: user
+    - name: Ausgabe des users
+      ansible.builtin.debug:
+        msg: "Der user ist {{ user.stdout }}"
+    - name: Gibt einige Gruppenvariablen aus
+      ansible.builtin.debug:
+        msg: "Color: {{color}}, number: {{number}}"
+
+
   handlers:
     - name: Erfolgsnachricht
       ansible.builtin.debug:

@@ -1,0 +1,24 @@
+- name: Test Playbook fuer ansible_become jorgruhe
+  hosts: macos
+  gather_facts: false
+  vars:
+    ansible_become_password: "Lunden.2247-V!"
+    ansible_become: true
+    ansible_become_user: "jorgruhe"
+    ansible_user: "{{ ansible_become_user }}"
+    ansible_password: "{{ ansible_become_password }}"
+  tasks:
+    - name: Jorgruhe Pswd
+      ansible.builtin.debug:
+        msg: "Es hat geklappt, das passsword lautet {{ ansible_become_password }} der benutzer ist {{ ansible_become_user }}"
+
+    - name: Ausgabe des users
+      ansible.builtin.debug:
+        msg: "Der user ist {{ ansible_user }} mit dem passwort {{ ansible_password }}"
+
+    - name: Jorgruhe Pswd Test ob ich root bin
+      ansible.builtin.command: whoami
+      register: user
+    - name: Ausgabe des users
+      ansible.builtin.debug:
+        msg: "Der user ist {{ user.stdout }}"
