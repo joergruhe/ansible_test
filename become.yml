@@ -19,6 +19,7 @@
     - name: Jorgruhe Pswd Test ob ich root bin
       ansible.builtin.command: whoami
       register: user
+      changed_when: false
     - name: Ausgabe des users
       ansible.builtin.debug:
         msg: "Der user ist {{ user.stdout }}"
