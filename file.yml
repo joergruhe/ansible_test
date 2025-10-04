@@ -1,4 +1,4 @@
-- name: Test Playbook fuer notify
+- name: Test Playbook fuer notify und den user jorgruhe
   hosts: macos
   gather_facts: false
   tasks:
